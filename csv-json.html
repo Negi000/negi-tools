@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV⇔JSON変換｜無料・ブラウザで処理</title>
+<meta name="description" content="CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><a href="index.html">データ処理ツール集</a><span class="tag">CSV・Excel・JSON・テキストの整形をブラウザで</span></header>
+<main>
+<h1>CSV⇔JSON変換</h1>
+<p class="lead">CSVとJSONを相互に変換します。処理はブラウザ内で行われ、データは外部に送信されません。</p>
+<div class="row"><label>ファイルから読み込む <input type="file" id="file" accept=".csv,.json,.txt"></label></div>
+<textarea id="in" placeholder="CSVまたはJSONを貼り付けてください"></textarea>
+<div class="row">
+<button id="toJson">CSV → JSON</button>
+<button id="toCsv">JSON → CSV</button>
+<button id="dl" class="sub">結果を保存</button>
+</div>
+<p class="err" id="err"></p>
+<div class="out" id="out"></div>
+<h2>仕様</h2>
+<p>CSV→JSONでは1行目を見出しとして、各行をオブジェクトにします。JSON→CSVでは、オブジェクトの配列（[{...}, {...}]）を受け付け、キーの和集合を見出しにします。</p>
+<div class="cta">
+<b>データ収集そのものを頼みたい方へ</b>
+<p class="note">Webサイトからのデータ収集を代行しています。取得できるかの確認とサンプル10件は無料です。</p>
+<a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
+</div>
+</main>
+<footer class="site"><a href="index.html">ツール一覧へ</a></footer>
+<script src="tools.js"></script>
+<script>initCsvJson();</script>
+</body>
+</html>

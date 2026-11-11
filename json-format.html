@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON整形・検証｜無料・ブラウザで処理</title>
+<meta name="description" content="JSONを見やすく整形し、正しい形式かどうかを確認する無料Webツール。圧縮（minify）もできます。データはブラウザ内で処理され、外部に送信されません。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><a href="index.html">データ処理ツール集</a><span class="tag">CSV・Excel・JSON・テキストの整形をブラウザで</span></header>
+<main>
+<h1>JSON整形・検証</h1>
+<p class="lead">JSONを整形して読みやすくします。形式が間違っている場合は、その旨を表示します。処理はブラウザ内で行われます。</p>
+<textarea id="in" placeholder="JSONを貼り付けてください"></textarea>
+<div class="row">
+<label>インデント <select id="indent"><option value="2">2スペース</option><option value="4">4スペース</option></select></label>
+<button id="run">整形する</button>
+<button id="mini" class="sub">圧縮する</button>
+<button id="dl" class="sub">結果を保存</button>
+<span class="stat" id="stat"></span>
+</div>
+<p class="err" id="err"></p>
+<div class="out" id="out"></div>
+<div class="cta">
+<b>データ収集そのものを頼みたい方へ</b>
+<p class="note">Webサイトからのデータ収集を代行しています。取得できるかの確認とサンプル10件は無料です。</p>
+<a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
+</div>
+</main>
+<footer class="site"><a href="index.html">ツール一覧へ</a></footer>
+<script src="tools.js"></script>
+<script>initJsonFormat();</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV重複削除｜無料・ブラウザで処理</title>
+<meta name="description" content="CSVファイルの重複行を無料で削除するWebツール。行全体または指定した列で重複を判定できます。データはブラウザ内で処理され、外部に送信されません。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><a href="index.html">データ処理ツール集</a><span class="tag">CSV・Excel・JSON・テキストの整形をブラウザで</span></header>
+<main>
+<h1>CSV重複削除</h1>
+<p class="lead">CSVの重複行を取り除きます。処理はブラウザ内で行われ、データは外部に送信されません。</p>
+<div class="row">
+<label>ファイルから読み込む <input type="file" id="file" accept=".csv,.txt"></label>
+<label><input type="checkbox" id="header" checked> 1行目を見出しとして扱う</label>
+<label>列の数 <select id="colnum"><option value="0">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label>
+<label>重複の判定 <select id="col"><option value="all">行全体</option></select></label>
+</div>
+<textarea id="in" placeholder="ここにCSVを貼り付けるか、ファイルを選んでください"></textarea>
+<div class="row"><button id="run">重複を削除する</button><button id="dl" class="sub">結果をCSVで保存</button><span class="stat" id="stat"></span></div>
+<p class="err" id="err"></p>
+<div class="out" id="out"></div>
+<h2>使い方</h2>
+<p>CSVを貼り付けるかファイルを選んで、「重複を削除する」を押してください。特定の列（メールアドレスや商品コードなど）だけで重複を判定したい場合は、「列の数」に列の総数を入れてから判定する列を選んでください。</p>
+<div class="cta">
+<b>データ収集そのものを頼みたい方へ</b>
+<p class="note">Webサイトからのデータ収集を代行しています。取得できるかの確認とサンプル10件は無料です。</p>
+<a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
+</div>
+</main>
+<footer class="site"><a href="index.html">ツール一覧へ</a></footer>
+<script src="tools.js"></script>
+<script>initDedupe();</script>
+</body>
+</html>
