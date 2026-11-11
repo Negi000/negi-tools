@@ -28,3 +28,5 @@ label{font-size:13px;color:var(--sub)}
 .note{font-size:12px;color:var(--sub)}
 footer.site{border-top:1px solid var(--line);padding:16px;text-align:center;font-size:12px;color:var(--sub)}
 .err{color:#b91c1c;font-size:13px;font-weight:700}
+
+.aff{margin:24px 0;text-align:center}
