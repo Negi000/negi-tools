@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>消費税計算｜税込・税抜の変換</title>
 <meta name="description" content="金額と税率（10%・8%）から税込価格・税抜価格・消費税額を計算する無料ツール。ブラウザ内で計算され、データは送信されません。">
+<link rel="canonical" href="https://tool.negi-lab.com/tax.html">
+<meta property="og:title" content="消費税計算｜税込・税抜の変換">
+<meta property="og:description" content="金額と税率（10%・8%）から税込価格・税抜価格・消費税額を計算する無料ツール。ブラウザ内で計算され、データは送信されません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tool.negi-lab.com/tax.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "消費税計算", "url": "https://tool.negi-lab.com/tax.html", "description": "金額と税率（10%・8%）から税込価格・税抜価格・消費税額を計算する無料ツール。ブラウザ内で計算され、データは送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "消費税額の端数処理はどうなっていますか？", "acceptedAnswer": {"@type": "Answer", "text": "このツールでは税額を切り捨てで計算しています。請求書単位の計算では、適格請求書（インボイス）のルールにより、1枚の請求書につき税率ごとに1回の端数処理を行うのが原則です。正式な請求書の作成時は、そちらのルールで再確認してください。"}}, {"@type": "Question", "name": "軽減税率に対応していますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。10%と8%（軽減税率）を切り替えられます。"}}, {"@type": "Question", "name": "税込から税抜を計算できますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。計算の向きを「税込 → 税抜」に切り替えてください。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 </head>
@@ -19,6 +26,12 @@
 <label>計算 <select id="mode"><option value="excl">税抜 → 税込</option><option value="incl">税込 → 税抜</option></select></label>
 </div>
 <div class="out" id="out"></div>
+<section class="faq">
+<h2>よくある質問</h2>
+<details><summary>消費税額の端数処理はどうなっていますか？</summary><p>このツールでは税額を切り捨てで計算しています。請求書単位の計算では、適格請求書（インボイス）のルールにより、1枚の請求書につき税率ごとに1回の端数処理を行うのが原則です。正式な請求書の作成時は、そちらのルールで再確認してください。</p></details>
+<details><summary>軽減税率に対応していますか？</summary><p>はい。10%と8%（軽減税率）を切り替えられます。</p></details>
+<details><summary>税込から税抜を計算できますか？</summary><p>できます。計算の向きを「税込 → 税抜」に切り替えてください。</p></details>
+</section>
 <div class="aff">
 <script type="text/javascript">rakuten_design="slide";rakuten_affiliateId="4c2fb9c2.c3e2b140.4c2fb9c3.cbd16d01";rakuten_items="ctsmatch";rakuten_genreId="0";rakuten_size="468x160";rakuten_target="_blank";rakuten_theme="gray";rakuten_border="off";rakuten_auto_mode="on";rakuten_genre_title="off";rakuten_recommend="on";rakuten_ts="1794406617185";</script><script type="text/javascript" src="https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106"></script>
 </div>
@@ -28,7 +41,7 @@
 <a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
 </div>
 </main>
-<footer class="site"><a href="index.html">ツール一覧へ</a></footer>
+<footer class="site"><a href="index.html">ツール一覧へ</a> ｜ <a href="about.html">このサイトについて・運営者情報</a></footer>
 <script src="tools2.js"></script>
 <script>initTax();</script>
 </body>

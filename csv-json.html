@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CSV⇔JSON変換｜無料・ブラウザで処理</title>
 <meta name="description" content="CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。">
+<link rel="canonical" href="https://tool.negi-lab.com/csv-json.html">
+<meta property="og:title" content="CSV⇔JSON変換｜無料・ブラウザで処理">
+<meta property="og:description" content="CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tool.negi-lab.com/csv-json.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV⇔JSON変換", "url": "https://tool.negi-lab.com/csv-json.html", "description": "CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "CSVの見出し行は必要ですか？", "acceptedAnswer": {"@type": "Answer", "text": "CSVからJSONへの変換では、1行目を見出しとしてキーに使います。見出しのないCSVは、先に見出し行を追加してから変換してください。"}}, {"@type": "Question", "name": "JSONからCSVに戻せますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。同じページで変換の向きを切り替えられます。"}}, {"@type": "Question", "name": "文字化けする場合はどうすればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "ファイルの文字コードがShift_JISの場合に起こります。UTF-8で保存し直してから読み込むと解消します。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 </head>
@@ -24,6 +31,12 @@
 <div class="out" id="out"></div>
 <h2>仕様</h2>
 <p>CSV→JSONでは1行目を見出しとして、各行をオブジェクトにします。JSON→CSVでは、オブジェクトの配列（[{...}, {...}]）を受け付け、キーの和集合を見出しにします。</p>
+<section class="faq">
+<h2>よくある質問</h2>
+<details><summary>CSVの見出し行は必要ですか？</summary><p>CSVからJSONへの変換では、1行目を見出しとしてキーに使います。見出しのないCSVは、先に見出し行を追加してから変換してください。</p></details>
+<details><summary>JSONからCSVに戻せますか？</summary><p>できます。同じページで変換の向きを切り替えられます。</p></details>
+<details><summary>文字化けする場合はどうすればいいですか？</summary><p>ファイルの文字コードがShift_JISの場合に起こります。UTF-8で保存し直してから読み込むと解消します。</p></details>
+</section>
 <div class="aff">
 <script type="text/javascript">rakuten_design="slide";rakuten_affiliateId="4c2fb9c2.c3e2b140.4c2fb9c3.cbd16d01";rakuten_items="ctsmatch";rakuten_genreId="0";rakuten_size="468x160";rakuten_target="_blank";rakuten_theme="gray";rakuten_border="off";rakuten_auto_mode="on";rakuten_genre_title="off";rakuten_recommend="on";rakuten_ts="1794406617185";</script><script type="text/javascript" src="https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106"></script>
 </div>
@@ -33,7 +46,7 @@
 <a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
 </div>
 </main>
-<footer class="site"><a href="index.html">ツール一覧へ</a></footer>
+<footer class="site"><a href="index.html">ツール一覧へ</a> ｜ <a href="about.html">このサイトについて・運営者情報</a></footer>
 <script src="tools.js"></script>
 <script>initCsvJson();</script>
 </body>

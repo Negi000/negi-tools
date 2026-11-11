@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>文字数カウント｜行数・バイト数・原稿用紙換算</title>
 <meta name="description" content="テキストの文字数（空白を除く数も）、行数、バイト数、原稿用紙の枚数を数える無料ツール。入力はブラウザ内で処理されます。">
+<link rel="canonical" href="https://tool.negi-lab.com/chars.html">
+<meta property="og:title" content="文字数カウント｜行数・バイト数・原稿用紙換算">
+<meta property="og:description" content="テキストの文字数（空白を除く数も）、行数、バイト数、原稿用紙の枚数を数える無料ツール。入力はブラウザ内で処理されます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tool.negi-lab.com/chars.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "文字数カウント", "url": "https://tool.negi-lab.com/chars.html", "description": "テキストの文字数（空白を除く数も）、行数、バイト数、原稿用紙の枚数を数える無料ツール。入力はブラウザ内で処理されます。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "文字数はどう数えていますか？", "acceptedAnswer": {"@type": "Answer", "text": "改行を含む全体の文字数と、空白を取り除いた文字数を両方表示します。レポートや記事の文字数指定には、通常「空白を除く」数を使います。"}}, {"@type": "Question", "name": "バイト数とは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "UTF-8という文字コードで保存したときの大きさです。日本語は1文字あたり3バイトになるのが基本です。"}}, {"@type": "Question", "name": "原稿用紙の枚数はどう計算していますか？", "acceptedAnswer": {"@type": "Answer", "text": "空白を除いた文字数を400字（原稿用紙1枚分）で割って計算しています。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 </head>
@@ -15,6 +22,12 @@
 <p class="lead">文章を貼り付けると、文字数や行数を数えます。処理はブラウザ内で行われます。</p>
 <textarea id="in" placeholder="テキストを貼り付けてください"></textarea>
 <div class="out" id="out"></div>
+<section class="faq">
+<h2>よくある質問</h2>
+<details><summary>文字数はどう数えていますか？</summary><p>改行を含む全体の文字数と、空白を取り除いた文字数を両方表示します。レポートや記事の文字数指定には、通常「空白を除く」数を使います。</p></details>
+<details><summary>バイト数とは何ですか？</summary><p>UTF-8という文字コードで保存したときの大きさです。日本語は1文字あたり3バイトになるのが基本です。</p></details>
+<details><summary>原稿用紙の枚数はどう計算していますか？</summary><p>空白を除いた文字数を400字（原稿用紙1枚分）で割って計算しています。</p></details>
+</section>
 <div class="aff">
 <script type="text/javascript">rakuten_design="slide";rakuten_affiliateId="4c2fb9c2.c3e2b140.4c2fb9c3.cbd16d01";rakuten_items="ctsmatch";rakuten_genreId="0";rakuten_size="468x160";rakuten_target="_blank";rakuten_theme="gray";rakuten_border="off";rakuten_auto_mode="on";rakuten_genre_title="off";rakuten_recommend="on";rakuten_ts="1794406617185";</script><script type="text/javascript" src="https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106"></script>
 </div>
@@ -24,7 +37,7 @@
 <a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
 </div>
 </main>
-<footer class="site"><a href="index.html">ツール一覧へ</a></footer>
+<footer class="site"><a href="index.html">ツール一覧へ</a> ｜ <a href="about.html">このサイトについて・運営者情報</a></footer>
 <script src="tools2.js"></script>
 <script>initChars();</script>
 </body>

@@ -1,0 +1,20 @@
+# データ処理ツール集（tool.negi-lab.com）
+
+> CSV・JSON・テキストの整形と、日常計算のための無料Webツール集。すべての処理はブラウザ内で完結し、入力データはサーバーに送信されない。会員登録不要・無料。運営者はデータ収集と自動化の受託を行う「モカ」で、Webサイトからのデータ収集代行（ココナラ）への相談導線を持つ。
+
+## ツール一覧
+
+- [CSV重複削除](https://tool.negi-lab.com/csv-dedupe.html): CSVの重複行を削除する。列を指定しての判定も可能
+- [CSV⇔JSON変換](https://tool.negi-lab.com/csv-json.html): CSVとJSONを相互に変換する
+- [JSON整形・検証](https://tool.negi-lab.com/json-format.html): JSONの整形・圧縮と形式チェック
+- [行の重複削除・並べ替え](https://tool.negi-lab.com/lines.html): テキストの重複行削除、空行除去、並べ替え
+- [文字数カウント](https://tool.negi-lab.com/chars.html): 文字数・行数・バイト数・原稿用紙換算
+- [消費税計算](https://tool.negi-lab.com/tax.html): 税込・税抜の変換（10%・8%対応、税額は切り捨て）
+- [割引計算](https://tool.negi-lab.com/discount.html): 割引後の価格と割引額の計算
+- [年齢計算](https://tool.negi-lab.com/age.html): 生年月日から満年齢と次の誕生日までの日数
+- [日数計算](https://tool.negi-lab.com/days.html): 日付の差と○日後・○日前の計算
+
+## サイト情報
+
+- [このサイトについて・運営者情報](https://tool.negi-lab.com/about.html)
+- データ収集の依頼: https://coconala.com/services/4501486
