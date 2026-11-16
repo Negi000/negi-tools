@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QRコード作成｜無料・高解像度PNGとSVGでダウンロード</title>
+<meta name="description" content="URLやテキストからQRコードを無料で作成。登録不要・透かしなし・回数制限なし。高解像度PNG（最大2048px）とSVGでダウンロードできます。入力はブラウザ内だけで処理されます。">
+<link rel="canonical" href="https://tool.negi-lab.com/qr.html">
+<meta property="og:title" content="QRコード作成｜無料・高解像度PNGとSVGでダウンロード">
+<meta property="og:description" content="URLやテキストからQRコードを無料で作成。登録不要・透かしなし・回数制限なし。高解像度PNG（最大2048px）とSVGでダウンロードできます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tool.negi-lab.com/qr.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "QRコード作成", "url": "https://tool.negi-lab.com/qr.html", "description": "URLやテキストからQRコードを無料で作成。登録不要・透かしなし・回数制限なし。高解像度PNG（最大2048px）とSVGでダウンロードできます。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "作ったQRコードに有効期限はありますか？", "acceptedAnswer": {"@type": "Answer", "text": "ありません。このツールが作るのは静的QRコードで、URLやテキストが画像そのものに入っています。サーバーに登録する仕組みではないので、期限切れや回数制限で読めなくなることはありません。"}}, {"@type": "Question", "name": "印刷にはPNGとSVGのどちらが向いていますか？", "acceptedAnswer": {"@type": "Answer", "text": "印刷にはSVGが向いています。ベクター形式なので名刺でもポスターでも拡大してぼやけません。画面表示やSNSへの貼り付けにはPNG（1024px以上）が便利です。"}}, {"@type": "Question", "name": "色を変えても読み取れますか？", "acceptedAnswer": {"@type": "Answer", "text": "濃い色をコード、明るい色を背景にすれば読み取れます。コントラストが弱い組み合わせ（薄いグレーと白など）は読み取りに失敗しやすくなるので避けてください。誤り訂正レベルを「高」にすると、多少の汚れやかすれにも強くなります。"}}, {"@type": "Question", "name": "入力したURLやテキストはどこかに送られますか？", "acceptedAnswer": {"@type": "Answer", "text": "送られません。QRコードの生成はすべてあなたのブラウザの中で行われ、入力した内容がサーバーに送信されることはありません。"}}]}]}</script>
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NGBHNX3CXJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NGBHNX3CXJ');
+</script>
+<style>
+.qr-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.qr-form{flex:1 1 340px;min-width:280px}
+.qr-form textarea{min-height:110px}
+.qr-preview{flex:0 0 300px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.qr-preview canvas{max-width:100%;height:auto;image-rendering:pixelated;border-radius:6px}
+.qr-preview .meta{font-size:12px;color:var(--sub);margin:10px 0 0}
+.qr-preview .dl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.qr-preview .dl button{padding:9px 16px;font-size:13px}
+input[type=color]{width:44px;height:34px;padding:2px;border:1.5px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+.diff{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.diff ul{margin:6px 0 2px;padding-left:20px;font-size:14px}
+.diff li{margin:4px 0}
+</style>
+</head>
+<body>
+<header class="site"><a href="index.html">データ処理ツール集</a><span class="tag">CSV・Excel・JSON・テキストの整形をブラウザで</span></header>
+<main>
+<h1>QRコード作成</h1>
+<p class="lead">URLやテキストを入れると、QRコードがその場で作れます。登録不要・無料・透かしなし。印刷用の高解像度PNGとSVGも無料でダウンロードできます。</p>
+<div class="qr-wrap">
+<div class="qr-form">
+<label for="text" style="display:block;margin-bottom:6px">QRコードにする内容（URL・テキスト）</label>
+<textarea id="text" placeholder="https://example.com">https://tool.negi-lab.com</textarea>
+<div class="row">
+<label>誤り訂正
+<select id="ec">
+<option value="L">低（7%まで復元）</option>
+<option value="M" selected>中（15%まで復元）</option>
+<option value="Q">高（25%まで復元）</option>
+<option value="H">最高（30%まで復元）</option>
+</select>
+</label>
+<label>PNGサイズ
+<select id="size">
+<option value="512">512px</option>
+<option value="1024" selected>1024px</option>
+<option value="2048">2048px</option>
+</select>
+</label>
+</div>
+<div class="row">
+<label>コードの色 <input type="color" id="fg" value="#16283a"></label>
+<label>背景の色 <input type="color" id="bg" value="#ffffff"></label>
+<label><input type="checkbox" id="quiet" checked> 余白（クワイエットゾーン）を付ける</label>
+</div>
+<p class="note">誤り訂正「最高」は印刷物の汚れ・かすれに強くなります。色は濃いコード×明るい背景の組み合わせで使ってください（薄い色同士は読み取れなくなることがあります）。</p>
+</div>
+<div class="qr-preview">
+<canvas id="cv" width="1024" height="1024" role="img" aria-label="QRコードのプレビュー"></canvas>
+<p class="meta" id="meta"></p>
+<p class="err" id="err"></p>
+<div class="dl">
+<button id="dlPng">PNGでダウンロード</button>
+<button id="dlSvg" class="sub">SVGでダウンロード</button>
+</div>
+</div>
+</div>
+<h2>他のQRツールとの違い</h2>
+<div class="diff">
+<ul>
+<li><b>高解像度PNG（最大2048px）とSVGのダウンロードが無料</b>です。有料ツールでは1024pxまで無料で、それ以上やSVGは月額プラン（月5〜16ドル程度）が必要なことが多いです。</li>
+<li><b>色の変更が無料</b>です。有料ツールではカスタム色が有料プラン限定のことがあります。</li>
+<li><b>透かしなし・登録不要・回数制限なし</b>です。無料プランのQRに透かしが入るツールや、ダウンロードに登録が要るツールがあります。</li>
+<li><b>入力はブラウザ内だけで処理</b>され、サーバーに送られません。</li>
+<li>作れるのは<b>静的QRコード</b>（内容が画像そのものに入るもの）です。あとから差し替えたり読み取り数を数えたりする動的QRは、サーバー側の仕組みが要るためこのツールでは作れません。その代わり期限切れや回数制限は一切ありません。</li>
+</ul>
+</div>
+<section class="faq">
+<h2>よくある質問</h2>
+<details><summary>作ったQRコードに有効期限はありますか？</summary><p>ありません。このツールが作るのは静的QRコードで、URLやテキストが画像そのものに入っています。サーバーに登録する仕組みではないので、期限切れや回数制限で読めなくなることはありません。</p></details>
+<details><summary>印刷にはPNGとSVGのどちらが向いていますか？</summary><p>印刷にはSVGが向いています。ベクター形式なので名刺でもポスターでも拡大してぼやけません。画面表示やSNSへの貼り付けにはPNG（1024px以上）が便利です。</p></details>
+<details><summary>色を変えても読み取れますか？</summary><p>濃い色をコード、明るい色を背景にすれば読み取れます。コントラストが弱い組み合わせ（薄いグレーと白など）は読み取りに失敗しやすくなるので避けてください。誤り訂正レベルを「高」にすると、多少の汚れやかすれにも強くなります。</p></details>
+<details><summary>入力したURLやテキストはどこかに送られますか？</summary><p>送られません。QRコードの生成はすべてあなたのブラウザの中で行われ、入力した内容がサーバーに送信されることはありません。</p></details>
+</section>
+<div class="aff">
+<script type="text/javascript">rakuten_design="slide";rakuten_affiliateId="4c2fb9c2.c3e2b140.4c2fb9c3.cbd16d01";rakuten_items="ctsmatch";rakuten_genreId="0";rakuten_size="468x160";rakuten_target="_blank";rakuten_theme="gray";rakuten_border="off";rakuten_auto_mode="on";rakuten_genre_title="off";rakuten_recommend="on";rakuten_ts="1794406617185";</script><script type="text/javascript" src="https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106"></script>
+</div>
+<div class="cta">
+<b>データ収集そのものを頼みたい方へ</b>
+<p class="note">Webサイトからのデータ収集を代行しています。取得できるかの確認とサンプル10件は無料です。</p>
+<a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
+</div>
+</main>
+<footer class="site"><a href="index.html">ツール一覧へ</a> ｜ <a href="about.html">このサイトについて・運営者情報</a></footer>
+<script src="qrcode.js"></script>
+<script src="qrcode_UTF8.js"></script>
+<script>
+(function(){
+  var textEl=document.getElementById('text'), ecEl=document.getElementById('ec'),
+      sizeEl=document.getElementById('size'), fgEl=document.getElementById('fg'),
+      bgEl=document.getElementById('bg'), quietEl=document.getElementById('quiet'),
+      cv=document.getElementById('cv'), metaEl=document.getElementById('meta'),
+      errEl=document.getElementById('err');
+  var current=null; // {qr, modules, quiet}
+  function build(){
+    var text=textEl.value;
+    errEl.textContent='';
+    if(!text){ current=null; drawEmpty(); metaEl.textContent='内容を入力してください。'; return; }
+    try{
+      var qr=qrcode(0, ecEl.value);
+      qr.addData(text);
+      qr.make();
+      current={qr:qr, modules:qr.getModuleCount(), quiet:quietEl.checked?4:0};
+      draw();
+      var bytes=new Blob([text]).size;
+      metaEl.textContent='モジュール '+current.modules+'×'+current.modules+' ／ '+text.length+'文字（約'+bytes+'バイト）／ 誤り訂正 '+ecEl.value;
+    }catch(e){
+      current=null; drawEmpty();
+      errEl.textContent='内容が長すぎてQRコードにできません。文字を減らしてください。（QRコードは最大で英数字4,296文字まで）';
+      metaEl.textContent='';
+    }
+  }
+  function drawEmpty(){
+    var ctx=cv.getContext('2d');
+    ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,cv.width,cv.height);
+  }
+  function draw(){
+    if(!current) return;
+    var qr=current.qr, n=current.modules, q=current.quiet, total=n+q*2;
+    var px=parseInt(sizeEl.value,10);
+    cv.width=px; cv.height=px;
+    var ctx=cv.getContext('2d'), cell=px/total;
+    ctx.fillStyle=bgEl.value; ctx.fillRect(0,0,px,px);
+    ctx.fillStyle=fgEl.value;
+    for(var r=0;r<n;r++) for(var c=0;c<n;c++){
+      if(qr.isDark(r,c)) ctx.fillRect(Math.round((c+q)*cell), Math.round((r+q)*cell), Math.ceil(cell), Math.ceil(cell));
+    }
+  }
+  function svgString(){
+    if(!current) return '';
+    var qr=current.qr, n=current.modules, q=current.quiet, total=n+q*2;
+    var parts=['<svg xmlns="http://www.w3.org/2000/svg" width="'+total+'" height="'+total+'" viewBox="0 0 '+total+' '+total+'" shape-rendering="crispEdges">'];
+    parts.push('<rect width="'+total+'" height="'+total+'" fill="'+bgEl.value+'"/>');
+    parts.push('<path fill="'+fgEl.value+'" d="');
+    for(var r=0;r<n;r++) for(var c=0;c<n;c++){
+      if(qr.isDark(r,c)) parts.push('M'+(c+q)+' '+r+'h1v1h-1z');
+    }
+    parts.push('"/></svg>');
+    return parts.join('');
+  }
+  function download(blob, name){
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download=name;
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  document.getElementById('dlPng').addEventListener('click', function(){
+    if(!current) return;
+    cv.toBlob(function(b){ if(b) download(b,'qr-code.png'); }, 'image/png');
+  });
+  document.getElementById('dlSvg').addEventListener('click', function(){
+    if(!current) return;
+    download(new Blob([svgString()], {type:'image/svg+xml'}), 'qr-code.svg');
+  });
+  [textEl,ecEl,sizeEl,fgEl,bgEl,quietEl].forEach(function(el){
+    el.addEventListener('input', build);
+    el.addEventListener('change', build);
+  });
+  if(typeof qrcode!=='function'){
+    errEl.textContent='QR生成ライブラリの読み込みに失敗しました。ページを再読み込みしてください。';
+    return;
+  }
+  build();
+})();
+</script>
+</body>
+</html>
