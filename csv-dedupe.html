@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CSV重複削除｜無料・ブラウザで処理</title>
-<meta name="description" content="CSVファイルの重複行を無料で削除するWebツール。行全体または指定した列で重複を判定できます。データはブラウザ内で処理され、外部に送信されません。">
+<meta name="description" content="CSVファイルの重複行を無料で削除できるWebツール。行全体での判定に加え、メールアドレスなど指定した列だけでの重複判定もできます。区切り文字（カンマ・タブ・セミコロン）の選択や、判定時の空白無視・大文字小文字を区別しない設定にも対応。データはブラウザ内で処理され、外部に送信されません。">
 <link rel="canonical" href="https://tool.negi-lab.com/csv-dedupe.html">
 <meta property="og:title" content="CSV重複削除｜無料・ブラウザで処理">
-<meta property="og:description" content="CSVファイルの重複行を無料で削除するWebツール。行全体または指定した列で重複を判定できます。データはブラウザ内で処理され、外部に送信されません。">
+<meta property="og:description" content="CSVファイルの重複行を無料で削除できるWebツール。行全体での判定に加え、メールアドレスなど指定した列だけでの重複判定もできます。区切り文字（カンマ・タブ・セミコロン）の選択や、判定時の空白無視・大文字小文字を区別しない設定にも対応。データはブラウザ内で処理され、外部に送信されません。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tool.negi-lab.com/csv-dedupe.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV重複削除", "url": "https://tool.negi-lab.com/csv-dedupe.html", "description": "CSVファイルの重複行を無料で削除するWebツール。行全体または指定した列で重複を判定できます。データはブラウザ内で処理され、外部に送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "重複の判定は行全体ですか？列でもできますか？", "acceptedAnswer": {"@type": "Answer", "text": "両方できます。行全体での判定のほか、特定の列（例：メールアドレスの列）を指定して、その列が同じ行を重複として取り除けます。"}}, {"@type": "Question", "name": "大きなCSVでも使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "処理はブラウザ内で行うため、目安として数万行程度まで快適に使えます。非常に大きなファイルでは時間がかかる場合があります。"}}, {"@type": "Question", "name": "データはサーバーに送信されますか？", "acceptedAnswer": {"@type": "Answer", "text": "送信されません。ファイルはブラウザの中だけで処理されます。"}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV重複削除", "url": "https://tool.negi-lab.com/csv-dedupe.html", "description": "CSVファイルの重複行を無料で削除できるWebツール。行全体での判定に加え、メールアドレスなど指定した列だけでの重複判定もできます。区切り文字（カンマ・タブ・セミコロン）の選択や、判定時の空白無視・大文字小文字を区別しない設定にも対応。データはブラウザ内で処理され、外部に送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "重複の判定は行全体ですか？列でもできますか？", "acceptedAnswer": {"@type": "Answer", "text": "両方できます。行全体での判定のほか、特定の列（例：メールアドレスの列）を指定して、その列が同じ行を重複として取り除けます。"}}, {"@type": "Question", "name": "大きなCSVでも使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "処理はブラウザ内で行うため、目安として数万行程度まで快適に使えます。非常に大きなファイルでは時間がかかる場合があります。"}}, {"@type": "Question", "name": "データはサーバーに送信されますか？", "acceptedAnswer": {"@type": "Answer", "text": "送信されません。ファイルはブラウザの中だけで処理されます。"}}, {"@type": "Question", "name": "タブ区切りやセミコロン区切りのCSVでも使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "使えます。「区切り文字」でカンマ・タブ・セミコロンを切り替えてください。結果の書き出しも、選んだ区切り文字で行われます。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
@@ -31,21 +31,26 @@
 <div class="row">
 <label>ファイルから読み込む <input type="file" id="file" accept=".csv,.txt"></label>
 <label><input type="checkbox" id="header" checked> 1行目を見出しとして扱う</label>
+<label>区切り文字 <select id="delim"><option value=",">カンマ</option><option value="tab">タブ</option><option value=";">セミコロン</option></select></label>
 <label>列の数 <select id="colnum"><option value="0">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label>
 <label>重複の判定 <select id="col"><option value="all">行全体</option></select></label>
+<label><input type="checkbox" id="trimkey"> 判定で前後の空白を無視</label>
+<label><input type="checkbox" id="nocase"> 大文字・小文字を区別しない</label>
 </div>
 <textarea id="in" placeholder="ここにCSVを貼り付けるか、ファイルを選んでください"></textarea>
-<div class="row"><button id="run">重複を削除する</button><button id="dl" class="sub">結果をCSVで保存</button><span class="stat" id="stat"></span></div>
+<div class="row"><button id="run">重複を削除する</button><button id="dl" class="sub">結果をCSVで保存</button><button id="copy" class="sub">結果をコピー</button><span class="stat" id="stat"></span></div>
 <p class="err" id="err"></p>
 <div class="out" id="out"></div>
 <h2>使い方</h2>
-<p>CSVを貼り付けるかファイルを選んで、「重複を削除する」を押してください。特定の列（メールアドレスや商品コードなど）だけで重複を判定したい場合は、「列の数」に列の総数を入れてから判定する列を選んでください。</p>
+<p>CSVを貼り付けるかファイルを選んで、「重複を削除する」を押してください。特定の列（メールアドレスや商品コードなど）だけで重複を判定したい場合は、「列の数」に列の総数を入れてから判定する列を選んでください。タブ区切りやセミコロン区切りのファイルは「区切り文字」で切り替えてください。判定のときだけ前後の空白を無視したり、大文字・小文字の違いを同一視したりもできます。</p>
 <section class="faq">
 <h2>よくある質問</h2>
 <details><summary>重複の判定は行全体ですか？列でもできますか？</summary><p>両方できます。行全体での判定のほか、特定の列（例：メールアドレスの列）を指定して、その列が同じ行を重複として取り除けます。</p></details>
 <details><summary>大きなCSVでも使えますか？</summary><p>処理はブラウザ内で行うため、目安として数万行程度まで快適に使えます。非常に大きなファイルでは時間がかかる場合があります。</p></details>
 <details><summary>データはサーバーに送信されますか？</summary><p>送信されません。ファイルはブラウザの中だけで処理されます。</p></details>
+<details><summary>タブ区切りやセミコロン区切りのCSVでも使えますか？</summary><p>使えます。「区切り文字」でカンマ・タブ・セミコロンを切り替えてください。結果の書き出しも、選んだ区切り文字で行われます。</p></details>
 </section>
+<nav class="rel"><h2>関連ツール</h2><div class="rel-list"><a href="csv-json.html">CSV⇔JSON変換</a><a href="json-format.html">JSON整形・検証</a><a href="lines.html">行の重複削除・並べ替え</a></div></nav>
 <div class="aff">
 <p class="pr">広告：この欄にはアフィリエイトリンクが含まれます。リンク経由で商品が購入されると、運営者に紹介料が支払われる場合があります。</p>
 <p class="amz">データ整形を体系的に学ぶなら：<a href="https://www.amazon.co.jp/s?k=Excel%20%E5%8F%82%E8%80%83%E6%9B%B8&tag=negi3939-22" rel="sponsored noopener" target="_blank">Excelの参考書を探す（Amazon）</a></p>

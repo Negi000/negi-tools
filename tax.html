@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>消費税計算｜税込・税抜の変換</title>
-<meta name="description" content="金額と税率（10%・8%）から税込価格・税抜価格・消費税額を計算する無料ツール。ブラウザ内で計算され、データは送信されません。">
+<meta name="description" content="金額と税率（10%・軽減税率8%）から税込価格・税抜価格・消費税額を計算する無料ツール。消費税額の端数処理は切り捨て・四捨五入・切り上げから選べます。請求書や経理の確認に。計算はブラウザ内で行われ、データは送信されません。登録不要です。">
 <link rel="canonical" href="https://tool.negi-lab.com/tax.html">
 <meta property="og:title" content="消費税計算｜税込・税抜の変換">
-<meta property="og:description" content="金額と税率（10%・8%）から税込価格・税抜価格・消費税額を計算する無料ツール。ブラウザ内で計算され、データは送信されません。">
+<meta property="og:description" content="金額と税率（10%・軽減税率8%）から税込価格・税抜価格・消費税額を計算する無料ツール。消費税額の端数処理は切り捨て・四捨五入・切り上げから選べます。請求書や経理の確認に。計算はブラウザ内で行われ、データは送信されません。登録不要です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tool.negi-lab.com/tax.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "消費税計算", "url": "https://tool.negi-lab.com/tax.html", "description": "金額と税率（10%・8%）から税込価格・税抜価格・消費税額を計算する無料ツール。ブラウザ内で計算され、データは送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "消費税額の端数処理はどうなっていますか？", "acceptedAnswer": {"@type": "Answer", "text": "このツールでは税額を切り捨てで計算しています。請求書単位の計算では、適格請求書（インボイス）のルールにより、1枚の請求書につき税率ごとに1回の端数処理を行うのが原則です。正式な請求書の作成時は、そちらのルールで再確認してください。"}}, {"@type": "Question", "name": "軽減税率に対応していますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。10%と8%（軽減税率）を切り替えられます。"}}, {"@type": "Question", "name": "税込から税抜を計算できますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。計算の向きを「税込 → 税抜」に切り替えてください。"}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "消費税計算", "url": "https://tool.negi-lab.com/tax.html", "description": "金額と税率（10%・軽減税率8%）から税込価格・税抜価格・消費税額を計算する無料ツール。消費税額の端数処理は切り捨て・四捨五入・切り上げから選べます。請求書や経理の確認に。計算はブラウザ内で行われ、データは送信されません。登録不要です。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "消費税額の端数処理はどうなっていますか？", "acceptedAnswer": {"@type": "Answer", "text": "端数処理は「端数処理」の欄で切り捨て・四捨五入・切り上げから選べます（初期設定は切り捨て）。請求書単位の計算では、適格請求書（インボイス）のルールにより、1枚の請求書につき税率ごとに1回の端数処理を行うのが原則です。正式な請求書の作成時は、そちらのルールで再確認してください。"}}, {"@type": "Question", "name": "軽減税率に対応していますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。10%と8%（軽減税率）を切り替えられます。"}}, {"@type": "Question", "name": "税込から税抜を計算できますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。計算の向きを「税込 → 税抜」に切り替えてください。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
@@ -27,19 +27,21 @@
 <header class="site"><a href="index.html">データ処理ツール集</a><span class="tag">CSV・Excel・JSON・テキストの整形をブラウザで</span></header>
 <main>
 <h1>消費税計算</h1>
-<p class="lead">税抜から税込、税込から税抜を計算します。税額は切り捨てで計算しています。</p>
+<p class="lead">税抜から税込、税込から税抜を計算します。税額の端数処理は切り捨て・四捨五入・切り上げから選べます。</p>
 <div class="row">
 <label>金額 <input type="number" id="price" placeholder="1000"></label>
 <label>税率 <select id="rate"><option value="10">10%</option><option value="8">8%（軽減税率）</option></select></label>
 <label>計算 <select id="mode"><option value="excl">税抜 → 税込</option><option value="incl">税込 → 税抜</option></select></label>
+<label>端数処理 <select id="round"><option value="floor">切り捨て</option><option value="round">四捨五入</option><option value="ceil">切り上げ</option></select></label>
 </div>
 <div class="out" id="out"></div>
 <section class="faq">
 <h2>よくある質問</h2>
-<details><summary>消費税額の端数処理はどうなっていますか？</summary><p>このツールでは税額を切り捨てで計算しています。請求書単位の計算では、適格請求書（インボイス）のルールにより、1枚の請求書につき税率ごとに1回の端数処理を行うのが原則です。正式な請求書の作成時は、そちらのルールで再確認してください。</p></details>
+<details><summary>消費税額の端数処理はどうなっていますか？</summary><p>端数処理は「端数処理」の欄で切り捨て・四捨五入・切り上げから選べます（初期設定は切り捨て）。請求書単位の計算では、適格請求書（インボイス）のルールにより、1枚の請求書につき税率ごとに1回の端数処理を行うのが原則です。正式な請求書の作成時は、そちらのルールで再確認してください。</p></details>
 <details><summary>軽減税率に対応していますか？</summary><p>はい。10%と8%（軽減税率）を切り替えられます。</p></details>
 <details><summary>税込から税抜を計算できますか？</summary><p>できます。計算の向きを「税込 → 税抜」に切り替えてください。</p></details>
 </section>
+<nav class="rel"><h2>関連ツール</h2><div class="rel-list"><a href="discount.html">割引計算</a><a href="days.html">日数計算</a><a href="age.html">年齢計算</a></div></nav>
 <div class="aff">
 <p class="pr">広告：この欄にはアフィリエイトリンクが含まれます。リンク経由で商品が購入されると、運営者に紹介料が支払われる場合があります。</p>
 <p class="amz">税金の計算や申告で迷ったら：<a href="https://www.amazon.co.jp/s?k=%E7%A2%BA%E5%AE%9A%E7%94%B3%E5%91%8A%20%E6%9C%AC&tag=negi3939-22" rel="sponsored noopener" target="_blank">確定申告の本を探す（Amazon）</a></p>

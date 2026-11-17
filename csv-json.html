@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CSV⇔JSON変換｜無料・ブラウザで処理</title>
-<meta name="description" content="CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。">
+<meta name="description" content="CSVをJSONに、JSONをCSVに変換できる無料Webツール。区切り文字（カンマ・タブ・セミコロン）の選択や、数値・真偽値を型として出力する変換にも対応し、結果のコピーやファイル保存もできます。データはブラウザ内で処理され、外部に送信されません。登録不要です。">
 <link rel="canonical" href="https://tool.negi-lab.com/csv-json.html">
 <meta property="og:title" content="CSV⇔JSON変換｜無料・ブラウザで処理">
-<meta property="og:description" content="CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。">
+<meta property="og:description" content="CSVをJSONに、JSONをCSVに変換できる無料Webツール。区切り文字（カンマ・タブ・セミコロン）の選択や、数値・真偽値を型として出力する変換にも対応し、結果のコピーやファイル保存もできます。データはブラウザ内で処理され、外部に送信されません。登録不要です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tool.negi-lab.com/csv-json.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV⇔JSON変換", "url": "https://tool.negi-lab.com/csv-json.html", "description": "CSVをJSONに、JSONをCSVに変換する無料Webツール。1行目を見出しとしてキーにします。データはブラウザ内で処理され、外部に送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "CSVの見出し行は必要ですか？", "acceptedAnswer": {"@type": "Answer", "text": "CSVからJSONへの変換では、1行目を見出しとしてキーに使います。見出しのないCSVは、先に見出し行を追加してから変換してください。"}}, {"@type": "Question", "name": "JSONからCSVに戻せますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。同じページで変換の向きを切り替えられます。"}}, {"@type": "Question", "name": "文字化けする場合はどうすればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "ファイルの文字コードがShift_JISの場合に起こります。UTF-8で保存し直してから読み込むと解消します。"}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV⇔JSON変換", "url": "https://tool.negi-lab.com/csv-json.html", "description": "CSVをJSONに、JSONをCSVに変換できる無料Webツール。区切り文字（カンマ・タブ・セミコロン）の選択や、数値・真偽値を型として出力する変換にも対応し、結果のコピーやファイル保存もできます。データはブラウザ内で処理され、外部に送信されません。登録不要です。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "CSVの見出し行は必要ですか？", "acceptedAnswer": {"@type": "Answer", "text": "CSVからJSONへの変換では、1行目を見出しとしてキーに使います。見出しのないCSVは、先に見出し行を追加してから変換してください。"}}, {"@type": "Question", "name": "JSONからCSVに戻せますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。同じページで変換の向きを切り替えられます。"}}, {"@type": "Question", "name": "文字化けする場合はどうすればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "ファイルの文字コードがShift_JISの場合に起こります。UTF-8で保存し直してから読み込むと解消します。"}}, {"@type": "Question", "name": "CSVの数値を、文字列ではなく数値としてJSONに出力できますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。「数値・true/false・nullを型として出力」にチェックを入れると、数値は数値、true/falseは真偽値、nullはnullとして出力されます。電話番号のような先頭が0の値は、文字列のまま保持されます。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
@@ -29,22 +29,26 @@
 <h1>CSV⇔JSON変換</h1>
 <p class="lead">CSVとJSONを相互に変換します。処理はブラウザ内で行われ、データは外部に送信されません。</p>
 <div class="row"><label>ファイルから読み込む <input type="file" id="file" accept=".csv,.json,.txt"></label></div>
+<div class="row"><label>区切り文字 <select id="delim"><option value=",">カンマ</option><option value="tab">タブ</option><option value=";">セミコロン</option></select></label><label><input type="checkbox" id="types"> 数値・true/false・nullを型として出力（CSV→JSON）</label></div>
 <textarea id="in" placeholder="CSVまたはJSONを貼り付けてください"></textarea>
 <div class="row">
 <button id="toJson">CSV → JSON</button>
 <button id="toCsv">JSON → CSV</button>
 <button id="dl" class="sub">結果を保存</button>
+<button id="copy" class="sub">結果をコピー</button>
 </div>
 <p class="err" id="err"></p>
 <div class="out" id="out"></div>
 <h2>仕様</h2>
-<p>CSV→JSONでは1行目を見出しとして、各行をオブジェクトにします。JSON→CSVでは、オブジェクトの配列（[{...}, {...}]）を受け付け、キーの和集合を見出しにします。</p>
+<p>CSV→JSONでは1行目を見出しとして、各行をオブジェクトにします。JSON→CSVでは、オブジェクトの配列（[{...}, {...}]）を受け付け、キーの和集合を見出しにします。「数値・true/false・nullを型として出力」を有効にすると、CSVの値のうち数値として読めるものは文字列ではなく数値としてJSONに出力されます。電話番号のような先頭が0の値は、文字列のまま保持されます。</p>
 <section class="faq">
 <h2>よくある質問</h2>
 <details><summary>CSVの見出し行は必要ですか？</summary><p>CSVからJSONへの変換では、1行目を見出しとしてキーに使います。見出しのないCSVは、先に見出し行を追加してから変換してください。</p></details>
 <details><summary>JSONからCSVに戻せますか？</summary><p>できます。同じページで変換の向きを切り替えられます。</p></details>
 <details><summary>文字化けする場合はどうすればいいですか？</summary><p>ファイルの文字コードがShift_JISの場合に起こります。UTF-8で保存し直してから読み込むと解消します。</p></details>
+<details><summary>CSVの数値を、文字列ではなく数値としてJSONに出力できますか？</summary><p>できます。「数値・true/false・nullを型として出力」にチェックを入れると、数値は数値、true/falseは真偽値、nullはnullとして出力されます。電話番号のような先頭が0の値は、文字列のまま保持されます。</p></details>
 </section>
+<nav class="rel"><h2>関連ツール</h2><div class="rel-list"><a href="csv-dedupe.html">CSV重複削除</a><a href="json-format.html">JSON整形・検証</a><a href="lines.html">行の重複削除・並べ替え</a></div></nav>
 <div class="aff">
 <p class="pr">広告：この欄にはアフィリエイトリンクが含まれます。リンク経由で商品が購入されると、運営者に紹介料が支払われる場合があります。</p>
 <p class="amz">データ処理の幅を広げるなら：<a href="https://www.amazon.co.jp/s?k=Python%20%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%20%E6%9C%AC&tag=negi3939-22" rel="sponsored noopener" target="_blank">Pythonデータ分析の本を探す（Amazon）</a></p>

@@ -57,7 +57,12 @@ footer.site a:hover{text-decoration:underline}
   h1{font-size:23px}
   .hero{padding:26px 20px}
   header.site{padding:10px 14px}
+  textarea,input[type=text],input[type=number],input[type=date],select{font-size:16px}
 }
 .aff .pr{font-size:12px;color:var(--sub);margin:0 0 8px}
 .aff .amz{font-size:13px;margin:0 0 10px}
 .aff .a8{font-size:13px;margin:0 0 10px;line-height:1.9}
+.rel{margin:30px 0 0}
+.rel-list{display:flex;flex-wrap:wrap;gap:8px}
+.rel-list a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--accent2);text-decoration:none;box-shadow:var(--shadow)}
+.rel-list a:hover{border-color:#bcd6da}

@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>日数計算｜2つの日付の差と○日後の計算</title>
-<meta name="description" content="2つの日付の間の日数と、指定した日付の○日後・○日前の日付を計算する無料ツール。">
+<meta name="description" content="2つの日付の間の日数と、指定した日付の○日後・○日前の日付を計算する無料ツール。土日と日本の祝日（振替休日・国民の休日を含む）を除いた営業日数や、○営業日後の日付も計算できます。締切や納期の確認に。計算はブラウザ内で行われ、登録不要です。">
 <link rel="canonical" href="https://tool.negi-lab.com/days.html">
 <meta property="og:title" content="日数計算｜2つの日付の差と○日後の計算">
-<meta property="og:description" content="2つの日付の間の日数と、指定した日付の○日後・○日前の日付を計算する無料ツール。">
+<meta property="og:description" content="2つの日付の間の日数と、指定した日付の○日後・○日前の日付を計算する無料ツール。土日と日本の祝日（振替休日・国民の休日を含む）を除いた営業日数や、○営業日後の日付も計算できます。締切や納期の確認に。計算はブラウザ内で行われ、登録不要です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tool.negi-lab.com/days.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "日数計算", "url": "https://tool.negi-lab.com/days.html", "description": "2つの日付の間の日数と、指定した日付の○日後・○日前の日付を計算する無料ツール。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "土日や祝日は日数に含まれますか？", "acceptedAnswer": {"@type": "Answer", "text": "含まれます。このツールはカレンダー上の日数を数えます。営業日だけを数える計算には対応していません。"}}, {"@type": "Question", "name": "○日前を計算するにはどうしますか？", "acceptedAnswer": {"@type": "Answer", "text": "日数にマイナスの数を入れてください（例：-30で30日前）。"}}, {"@type": "Question", "name": "うるう年は考慮されますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。カレンダーの実日数で計算するため、うるう年も自動で正しく数えられます。"}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "日数計算", "url": "https://tool.negi-lab.com/days.html", "description": "2つの日付の間の日数と、指定した日付の○日後・○日前の日付を計算する無料ツール。土日と日本の祝日（振替休日・国民の休日を含む）を除いた営業日数や、○営業日後の日付も計算できます。締切や納期の確認に。計算はブラウザ内で行われ、登録不要です。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "土日や祝日は日数に含まれますか？", "acceptedAnswer": {"@type": "Answer", "text": "「日数の差」には含まれます（カレンダー上の日数を数えます）。あわせて、土日と日本の祝日を除いた営業日数も表示します。祝日は振替休日・国民の休日も含めて自動で判定します。"}}, {"@type": "Question", "name": "○日前を計算するにはどうしますか？", "acceptedAnswer": {"@type": "Answer", "text": "日数にマイナスの数を入れてください（例：-30で30日前）。"}}, {"@type": "Question", "name": "うるう年は考慮されますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。カレンダーの実日数で計算するため、うるう年も自動で正しく数えられます。"}}, {"@type": "Question", "name": "○営業日後の日付も計算できますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。「○日後・○日前」の欄で「営業日で数える」にチェックを入れると、土日と日本の祝日を除いて数えた日付を計算します。年末年始やお盆など、会社独自の休日には対応していません。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
@@ -38,14 +38,17 @@
 <div class="row">
 <label>基準日 <input type="date" id="base"></label>
 <label>日数（前はマイナス） <input type="number" id="n" placeholder="30"></label>
+<label><input type="checkbox" id="biz"> 営業日で数える（土日・祝日を除く）</label>
 </div>
 <div class="out" id="out2"></div>
 <section class="faq">
 <h2>よくある質問</h2>
-<details><summary>土日や祝日は日数に含まれますか？</summary><p>含まれます。このツールはカレンダー上の日数を数えます。営業日だけを数える計算には対応していません。</p></details>
+<details><summary>土日や祝日は日数に含まれますか？</summary><p>「日数の差」には含まれます（カレンダー上の日数を数えます）。あわせて、土日と日本の祝日を除いた営業日数も表示します。祝日は振替休日・国民の休日も含めて自動で判定します。</p></details>
 <details><summary>○日前を計算するにはどうしますか？</summary><p>日数にマイナスの数を入れてください（例：-30で30日前）。</p></details>
 <details><summary>うるう年は考慮されますか？</summary><p>はい。カレンダーの実日数で計算するため、うるう年も自動で正しく数えられます。</p></details>
+<details><summary>○営業日後の日付も計算できますか？</summary><p>できます。「○日後・○日前」の欄で「営業日で数える」にチェックを入れると、土日と日本の祝日を除いて数えた日付を計算します。年末年始やお盆など、会社独自の休日には対応していません。</p></details>
 </section>
+<nav class="rel"><h2>関連ツール</h2><div class="rel-list"><a href="age.html">年齢計算</a><a href="tax.html">消費税計算</a></div></nav>
 <div class="aff">
 <p class="pr">広告：この欄にはアフィリエイトリンクが含まれます。リンク経由で商品が購入されると、運営者に紹介料が支払われる場合があります。</p>
 <script type="text/javascript">rakuten_design="slide";rakuten_affiliateId="4c2fb9c2.c3e2b140.4c2fb9c3.cbd16d01";rakuten_items="ctsmatch";rakuten_genreId="0";rakuten_size="468x160";rakuten_target="_blank";rakuten_theme="gray";rakuten_border="off";rakuten_auto_mode="on";rakuten_genre_title="off";rakuten_recommend="on";rakuten_ts="1794406617185";</script><script type="text/javascript" src="https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106"></script>

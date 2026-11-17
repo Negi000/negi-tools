@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JSON整形・検証｜無料・ブラウザで処理</title>
-<meta name="description" content="JSONを見やすく整形し、正しい形式かどうかを確認する無料Webツール。圧縮（minify）もできます。データはブラウザ内で処理され、外部に送信されません。">
+<meta name="description" content="JSONを見やすく整形し、正しい形式かどうかを確認できる無料Webツール。圧縮（minify）、キーの並べ替え、エラー位置の行・列表示に対応しています。データはブラウザ内で処理され、外部に送信されません。登録不要で、APIのレスポンス確認や設定ファイルのチェックに使えます。">
 <link rel="canonical" href="https://tool.negi-lab.com/json-format.html">
 <meta property="og:title" content="JSON整形・検証｜無料・ブラウザで処理">
-<meta property="og:description" content="JSONを見やすく整形し、正しい形式かどうかを確認する無料Webツール。圧縮（minify）もできます。データはブラウザ内で処理され、外部に送信されません。">
+<meta property="og:description" content="JSONを見やすく整形し、正しい形式かどうかを確認できる無料Webツール。圧縮（minify）、キーの並べ替え、エラー位置の行・列表示に対応しています。データはブラウザ内で処理され、外部に送信されません。登録不要で、APIのレスポンス確認や設定ファイルのチェックに使えます。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tool.negi-lab.com/json-format.html">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JSON整形・検証", "url": "https://tool.negi-lab.com/json-format.html", "description": "JSONを見やすく整形し、正しい形式かどうかを確認する無料Webツール。圧縮（minify）もできます。データはブラウザ内で処理され、外部に送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "検証でエラーが出たらどうすればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "エラーの位置が表示されます。よくある原因は、カンマの不足、ダブルクォートではなくシングルクォートの使用、最後の要素の後ろの余分なカンマです。"}}, {"@type": "Question", "name": "整形と圧縮（minify）の違いは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "整形は改行とインデントを入れて読みやすくする処理、圧縮は空白を取り除いてサイズを小さくする処理です。用途に合わせて切り替えられます。"}}, {"@type": "Question", "name": "データはサーバーに送信されますか？", "acceptedAnswer": {"@type": "Answer", "text": "送信されません。整形と検証はブラウザの中だけで行われます。"}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JSON整形・検証", "url": "https://tool.negi-lab.com/json-format.html", "description": "JSONを見やすく整形し、正しい形式かどうかを確認できる無料Webツール。圧縮（minify）、キーの並べ替え、エラー位置の行・列表示に対応しています。データはブラウザ内で処理され、外部に送信されません。登録不要で、APIのレスポンス確認や設定ファイルのチェックに使えます。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "検証でエラーが出たらどうすればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "エラーの位置が表示されます。よくある原因は、カンマの不足、ダブルクォートではなくシングルクォートの使用、最後の要素の後ろの余分なカンマです。"}}, {"@type": "Question", "name": "整形と圧縮（minify）の違いは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "整形は改行とインデントを入れて読みやすくする処理、圧縮は空白を取り除いてサイズを小さくする処理です。用途に合わせて切り替えられます。"}}, {"@type": "Question", "name": "データはサーバーに送信されますか？", "acceptedAnswer": {"@type": "Answer", "text": "送信されません。整形と検証はブラウザの中だけで行われます。"}}, {"@type": "Question", "name": "オブジェクトのキーを並べ替えることはできますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。「キーを並べ替える」にチェックを入れると、入れ子のオブジェクトも含めてキーをアルファベット順に並べ替えてから整形・圧縮します。"}}]}]}</script>
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
@@ -31,9 +31,11 @@
 <textarea id="in" placeholder="JSONを貼り付けてください"></textarea>
 <div class="row">
 <label>インデント <select id="indent"><option value="2">2スペース</option><option value="4">4スペース</option></select></label>
+<label><input type="checkbox" id="sortkeys"> キーを並べ替える</label>
 <button id="run">整形する</button>
 <button id="mini" class="sub">圧縮する</button>
 <button id="dl" class="sub">結果を保存</button>
+<button id="copy" class="sub">結果をコピー</button>
 <span class="stat" id="stat"></span>
 </div>
 <p class="err" id="err"></p>
@@ -43,7 +45,9 @@
 <details><summary>検証でエラーが出たらどうすればいいですか？</summary><p>エラーの位置が表示されます。よくある原因は、カンマの不足、ダブルクォートではなくシングルクォートの使用、最後の要素の後ろの余分なカンマです。</p></details>
 <details><summary>整形と圧縮（minify）の違いは何ですか？</summary><p>整形は改行とインデントを入れて読みやすくする処理、圧縮は空白を取り除いてサイズを小さくする処理です。用途に合わせて切り替えられます。</p></details>
 <details><summary>データはサーバーに送信されますか？</summary><p>送信されません。整形と検証はブラウザの中だけで行われます。</p></details>
+<details><summary>オブジェクトのキーを並べ替えることはできますか？</summary><p>できます。「キーを並べ替える」にチェックを入れると、入れ子のオブジェクトも含めてキーをアルファベット順に並べ替えてから整形・圧縮します。</p></details>
 </section>
+<nav class="rel"><h2>関連ツール</h2><div class="rel-list"><a href="csv-json.html">CSV⇔JSON変換</a><a href="csv-dedupe.html">CSV重複削除</a><a href="chars.html">文字数カウント</a></div></nav>
 <div class="aff">
 <p class="pr">広告：この欄にはアフィリエイトリンクが含まれます。リンク経由で商品が購入されると、運営者に紹介料が支払われる場合があります。</p>
 <p class="a8">関連サービス：<a href="https://px.a8.net/svt/ejp?a8mat=4BGNCH+99ESBE+CO4+61JSI" rel="nofollow">レンタルサーバー エックスサーバー</a><img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BGNCH+99ESBE+CO4+61JSI" alt=""> ／ <a href="https://px.a8.net/svt/ejp?a8mat=4BGNCH+96FMAI+38W2+6ARKY" rel="nofollow">専門的なPDF変換ソフト</a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4BGNCH+96FMAI+38W2+6ARKY" alt=""> ／ <a href="https://px.a8.net/svt/ejp?a8mat=4BGNCH+9BSIQI+46SM+6EU6Q" rel="nofollow">PDFの編集を手軽に「いきなりPDF」</a> ／ <a href="https://px.a8.net/svt/ejp?a8mat=4BGNCH+9BSIQI+46SM+6FHC2" rel="nofollow">最安ご購入保証、クラウドストレージサービス「Dropbox」</a></p>
