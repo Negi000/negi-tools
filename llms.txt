@@ -4,15 +4,17 @@
 
 ## ツール一覧
 
+- [QRコード作成](https://tool.negi-lab.com/qr.html): URLやテキスト、Wi-Fi接続情報からQRコードを作成。高解像度PNG（最大2048px）とSVGでダウンロード可能
+
 - [CSV重複削除](https://tool.negi-lab.com/csv-dedupe.html): CSVの重複行を削除する。列を指定しての判定も可能
-- [CSV⇔JSON変換](https://tool.negi-lab.com/csv-json.html): CSVとJSONを相互に変換する
+- [CSV⇔JSON変換](https://tool.negi-lab.com/csv-json.html): CSVとJSONを相互に変換する（区切り文字の選択、数値などの型変換に対応）
 - [JSON整形・検証](https://tool.negi-lab.com/json-format.html): JSONの整形・圧縮と形式チェック
 - [行の重複削除・並べ替え](https://tool.negi-lab.com/lines.html): テキストの重複行削除、空行除去、並べ替え
-- [文字数カウント](https://tool.negi-lab.com/chars.html): 文字数・行数・バイト数・原稿用紙換算
-- [消費税計算](https://tool.negi-lab.com/tax.html): 税込・税抜の変換（10%・8%対応、税額は切り捨て）
+- [文字数カウント](https://tool.negi-lab.com/chars.html): 文字数・行数・単語数・バイト数・原稿用紙換算
+- [消費税計算](https://tool.negi-lab.com/tax.html): 税込・税抜の変換（10%・8%対応、税額の端数処理は切り捨て・四捨五入・切り上げから選択可能）
 - [割引計算](https://tool.negi-lab.com/discount.html): 割引後の価格と割引額の計算
 - [年齢計算](https://tool.negi-lab.com/age.html): 生年月日から満年齢と次の誕生日までの日数
-- [日数計算](https://tool.negi-lab.com/days.html): 日付の差と○日後・○日前の計算
+- [日数計算](https://tool.negi-lab.com/days.html): 日付の差と○日後・○日前の計算（土日・祝日を除いた営業日計算にも対応）
 
 ## サイト情報
 
