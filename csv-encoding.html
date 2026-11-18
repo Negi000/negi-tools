@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV文字コード変換・文字化け直し｜UTF-8／Shift_JIS変換とBOM付け外しが無料</title>
+<meta name="description" content="CSVファイルの文字コードを判定して、UTF-8／UTF-8（BOM付き）／Shift_JISへ変換できる無料ツール。Excelで文字化けするCSVの直し方に。判定の根拠も表示します。データはブラウザ内で処理され、外部に送信されません。">
+<link rel="canonical" href="https://tool.negi-lab.com/csv-encoding.html">
+<meta property="og:title" content="CSV文字コード変換・文字化け直し｜無料・ブラウザで処理">
+<meta property="og:description" content="CSVの文字コードを判定し、UTF-8／BOM付きUTF-8／Shift_JISへ変換します。Excelの文字化け直しに。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tool.negi-lab.com/csv-encoding.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSV文字コード変換・文字化け直し", "url": "https://tool.negi-lab.com/csv-encoding.html", "description": "CSVファイルの文字コードを判定して、UTF-8／UTF-8（BOM付き）／Shift_JISへ変換できる無料ツール。判定の根拠も表示します。データはブラウザ内で処理され、外部に送信されません。", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Webブラウザ", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "CSVがExcelで文字化けするのはなぜですか？", "acceptedAnswer": {"@type": "Answer", "text": "Excelがファイルの文字コードをShift_JISと決めつけて開くことがあるためです。UTF-8のCSVは、BOM付きUTF-8に変換するとExcelでも文字化けせずに開けることが多くなります。"}}, {"@type": "Question", "name": "BOMとは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "ファイルの先頭に付く、文字コードを示す目印のバイト列です。UTF-8のBOMは EF BB BF の3バイトで、これがあると多くのソフトがUTF-8だと判断できます。"}}, {"@type": "Question", "name": "文字コードの判定は正確ですか？", "acceptedAnswer": {"@type": "Answer", "text": "BOMがある場合は確実です。BOMがない場合は、UTF-8として正しく読めるかなどを順に試して判定しており、判定の根拠を画面に表示します。短いファイルや記号だけのファイルでは判定が目安になる場合があります。"}}, {"@type": "Question", "name": "00123のような先頭のゼロは直りますか？", "acceptedAnswer": {"@type": "Answer", "text": "文字コード変換では直りません。先頭のゼロが消えるのは、Excelがその列を数値だと判断して表示するためです。取り込み時に列を文字列として読み込むと防げます。"}}, {"@type": "Question", "name": "データはサーバーに送信されますか？", "acceptedAnswer": {"@type": "Answer", "text": "送信されません。ファイルはブラウザの中だけで処理されます。"}}]}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.enc-result{font-size:15px;margin:6px 0;white-space:pre-line}
+.enc-sub{font-size:14px;color:#555;margin:4px 0;white-space:pre-line}
+.enc-preview{white-space:pre-wrap;word-break:break-all;max-height:220px;overflow:auto}
+label{display:block;margin-top:10px}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1835873052239386" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NGBHNX3CXJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NGBHNX3CXJ');
+</script>
+</head>
+<body>
+<header class="site"><a href="index.html">データ処理ツール集</a><span class="tag">CSV・Excel・JSON・テキストの整形をブラウザで</span></header>
+<main>
+<h1>CSV文字コード変換・文字化け直し</h1>
+<p class="lead">CSVファイルの文字コードを判定し、UTF-8／UTF-8（BOM付き）／Shift_JISへ変換して保存し直します。Excelで開くと文字化けするCSVの手直しに使えます。判定の根拠もあわせて表示します。処理はブラウザ内で行われ、データは外部に送信されません。CSV以外のテキストファイル（.txt）にも使えます。</p>
+<label for="enc-file">ファイルを選ぶ（.csv／.txt）</label>
+<input type="file" id="enc-file" accept=".csv,.txt,text/csv,text/plain">
+<label for="enc-target">変換先の文字コード</label>
+<select id="enc-target">
+<option value="utf8-bom" selected>UTF-8（BOM付き）― Excelで開くならこれが無難です</option>
+<option value="utf8">UTF-8（BOMなし）</option>
+<option value="shift_jis">Shift_JIS ― 古いシステムやWindows標準の形式</option>
+</select>
+<div class="row">
+<button id="btn-convert">変換して保存する</button>
+</div>
+<p class="note" id="enc-msg"></p>
+<div class="out enc-result" id="enc-out"></div>
+<p class="enc-sub" id="enc-sub"></p>
+<h2>中身のプレビュー（変換後・先頭のみ）</h2>
+<div class="out enc-preview" id="enc-preview"></div>
+<h2>使い方と注意</h2>
+<p class="lead">ファイルを選んで変換先を決め、「変換して保存する」を押すだけです。元のファイル名に「_utf8」「_utf8bom」「_sjis」を付けて保存します。Excelで文字化けする場合は、まず「UTF-8（BOM付き）」を試してください。逆に、UTF-8で作ったファイルをShift_JIS前提のシステムへ渡す場合は「Shift_JIS」を選んでください。Shift_JISに無い文字（絵文字や一部の記号）は「?」に置き換わり、置き換えた個数を結果に表示します。</p>
+<p class="lead">注意：商品コードの「00123」がExcelで「123」になる現象は文字コードの問題ではなく、Excelが数値だと判断して先頭のゼロを落として表示しているものです。このツールでは直りません。Excelの取り込み時に、その列を「文字列」として読み込むと防げます。</p>
+<section class="faq">
+<h2>よくある質問</h2>
+<details><summary>CSVがExcelで文字化けするのはなぜですか？</summary><p>Excelがファイルの文字コードをShift_JISと決めつけて開くことがあるためです。UTF-8のCSVは、BOM付きUTF-8に変換するとExcelでも文字化けせずに開けることが多くなります。</p></details>
+<details><summary>BOMとは何ですか？</summary><p>ファイルの先頭に付く、文字コードを示す目印のバイト列です。UTF-8のBOMは EF BB BF の3バイトで、これがあると多くのソフトがUTF-8だと判断できます。</p></details>
+<details><summary>文字コードの判定は正確ですか？</summary><p>BOMがある場合は確実です。BOMがない場合は、UTF-8として正しく読めるかなどを順に試して判定しており、判定の根拠を画面に表示します。短いファイルや記号だけのファイルでは判定が目安になる場合があります。</p></details>
+<details><summary>00123のような先頭のゼロは直りますか？</summary><p>文字コード変換では直りません。先頭のゼロが消えるのは、Excelがその列を数値だと判断して表示するためです。取り込み時に列を文字列として読み込むと防げます。</p></details>
+<details><summary>データはサーバーに送信されますか？</summary><p>送信されません。ファイルはブラウザの中だけで処理されます。</p></details>
+</section>
+<nav class="rel"><h2>関連ツール</h2><div class="rel-list"><a href="csv-dedupe.html">CSV重複削除</a><a href="csv-json.html">CSV⇔JSON変換</a><a href="json-format.html">JSON整形</a><a href="chars.html">文字数カウント</a></div></nav>
+<div class="aff">
+<p class="pr">広告：この欄にはアフィリエイトリンクが含まれます。リンク経由で商品が購入されると、運営者に紹介料が支払われる場合があります。</p>
+<p class="amz">データ整形を体系的に学ぶなら：<a href="https://www.amazon.co.jp/s?k=Excel%20%E5%8F%82%E8%80%83%E6%9B%B8&tag=negi3939-22" rel="sponsored noopener" target="_blank">Excelの参考書を探す（Amazon）</a></p>
+</div>
+<div class="cta">
+<b>データ収集そのものを頼みたい方へ</b>
+<p class="note">Webサイトからのデータ収集を代行しています。取得できるかの確認とサンプル10件は無料です。</p>
+<a href="https://coconala.com/services/4501486" rel="noopener">ココナラで相談する（無料確認つき）</a>
+</div>
+</main>
+<footer class="site"><a href="index.html">ツール一覧へ</a> ｜ <a href="about.html">このサイトについて・運営者情報</a></footer>
+<script>
+function hasBom(bytes, bom){
+  if (bytes.length < bom.length) return false;
+  for (var i = 0; i < bom.length; i++) { if (bytes[i] !== bom[i]) return false; }
+  return true;
+}
+function tryDecode(bytes, label){
+  try { return new TextDecoder(label, {fatal: true}).decode(bytes); } catch (e) { return null; }
+}
+function detectAndDecode(bytes){
+  if (!bytes || bytes.length === 0) throw new Error('ファイルが空です。');
+  if (hasBom(bytes, [0xEF, 0xBB, 0xBF])) {
+    return {encoding: 'utf-8', label: 'UTF-8（BOM付き）', bom: true, reason: '先頭のBOM（EF BB BF）からUTF-8と判定しました。', text: new TextDecoder('utf-8').decode(bytes)};
+  }
+  if (hasBom(bytes, [0xFF, 0xFE])) {
+    return {encoding: 'utf-16le', label: 'UTF-16LE（BOM付き）', bom: true, reason: '先頭のBOM（FF FE）からUTF-16LEと判定しました。', text: new TextDecoder('utf-16le').decode(bytes)};
+  }
+  if (hasBom(bytes, [0xFE, 0xFF])) {
+    return {encoding: 'utf-16be', label: 'UTF-16BE（BOM付き）', bom: true, reason: '先頭のBOM（FE FF）からUTF-16BEと判定しました。', text: new TextDecoder('utf-16be').decode(bytes)};
+  }
+  var asUtf8 = tryDecode(bytes, 'utf-8');
+  if (asUtf8 !== null) {
+    var asciiOnly = true;
+    for (var i = 0; i < bytes.length; i++) { if (bytes[i] > 0x7F) { asciiOnly = false; break; } }
+    if (asciiOnly) return {encoding: 'ascii', label: 'ASCII（UTF-8互換）', bom: false, reason: '半角英数字と記号だけのため、UTF-8でもShift_JISでも同じ内容です。', text: asUtf8};
+    return {encoding: 'utf-8', label: 'UTF-8（BOMなし）', bom: false, reason: 'UTF-8として最後まで正しく読み切れたため、UTF-8と判定しました。', text: asUtf8};
+  }
+  var asSjis = tryDecode(bytes, 'shift_jis');
+  if (asSjis !== null) {
+    return {encoding: 'shift_jis', label: 'Shift_JIS', bom: false, reason: 'UTF-8としては読み切れず、Shift_JISとして読み切れたため、Shift_JISと判定しました。', text: asSjis};
+  }
+  var asEuc = tryDecode(bytes, 'euc-jp');
+  if (asEuc !== null) {
+    return {encoding: 'euc-jp', label: 'EUC-JP', bom: false, reason: 'UTF-8／Shift_JISとしては読み切れず、EUC-JPとして読み切れたため、EUC-JPと判定しました。', text: asEuc};
+  }
+  return {encoding: 'shift_jis', label: 'Shift_JIS（推定）', bom: false, reason: 'どの形式でも完全には読み切れなかったため、Shift_JISとして読み直しました。一部が置換文字（�）になっている場合があります。', text: new TextDecoder('shift_jis').decode(bytes)};
+}
+var sjisMapCache = null;
+function buildSjisEncodeMap(){
+  if (sjisMapCache) return sjisMapCache;
+  var map = {};
+  var dec = new TextDecoder('shift_jis');
+  var b, t, seq, ch;
+  for (b = 0x00; b <= 0xFF; b++) {
+    seq = new Uint8Array([b]);
+    ch = dec.decode(seq);
+    if (ch.length === 1 && ch !== '�' && !(b >= 0x81 && b <= 0x9F) && !(b >= 0xE0 && b <= 0xFC)) {
+      if (!(ch in map)) map[ch] = [b];
+    }
+  }
+  var leads = [];
+  for (b = 0x81; b <= 0x9F; b++) leads.push(b);
+  for (b = 0xE0; b <= 0xFC; b++) leads.push(b);
+  for (var li = 0; li < leads.length; li++) {
+    for (t = 0x40; t <= 0xFC; t++) {
+      if (t === 0x7F) continue;
+      seq = new Uint8Array([leads[li], t]);
+      ch = dec.decode(seq);
+      if (ch.length === 1 && ch !== '�' && !(ch in map)) map[ch] = [leads[li], t];
+    }
+  }
+  sjisMapCache = map;
+  return map;
+}
+function encodeSjis(text){
+  var map = buildSjisEncodeMap();
+  var out = [];
+  var replaced = 0;
+  var normalized = String(text).replace(/\r\n|\r|\n/g, '\r\n');
+  var chars = Array.from(normalized);
+  for (var i = 0; i < chars.length; i++) {
+    var ch = chars[i];
+    var code = ch.codePointAt(0);
+    if (code === 0x0D || code === 0x0A) { out.push(code); continue; }
+    if (code < 0x80) { out.push(code); continue; }
+    var seq = map[ch];
+    if (seq) { for (var j = 0; j < seq.length; j++) out.push(seq[j]); }
+    else { out.push(0x3F); replaced++; }
+  }
+  return {bytes: new Uint8Array(out), replaced: replaced};
+}
+function encodeOutput(text, target){
+  if (target === 'shift_jis') {
+    var r = encodeSjis(text);
+    return {bytes: r.bytes, replaced: r.replaced, label: 'Shift_JIS', suffix: '_sjis'};
+  }
+  var body = new TextEncoder().encode(String(text));
+  if (target === 'utf8-bom') {
+    var withBom = new Uint8Array(body.length + 3);
+    withBom[0] = 0xEF; withBom[1] = 0xBB; withBom[2] = 0xBF;
+    withBom.set(body, 3);
+    return {bytes: withBom, replaced: 0, label: 'UTF-8（BOM付き）', suffix: '_utf8bom'};
+  }
+  return {bytes: body, replaced: 0, label: 'UTF-8（BOMなし）', suffix: '_utf8'};
+}
+function convertBytes(bytes, target){
+  var detected = detectAndDecode(bytes);
+  var encoded = encodeOutput(detected.text, target);
+  return {detected: detected, encoded: encoded};
+}
+if (typeof document !== 'undefined') {
+  var currentFile = null;
+  document.getElementById('enc-file').addEventListener('change', function(ev){
+    currentFile = ev.target.files && ev.target.files[0] ? ev.target.files[0] : null;
+    var msgEl = document.getElementById('enc-msg');
+    var outEl = document.getElementById('enc-out');
+    var subEl = document.getElementById('enc-sub');
+    var prevEl = document.getElementById('enc-preview');
+    msgEl.textContent = ''; outEl.textContent = ''; subEl.textContent = ''; prevEl.textContent = '';
+    if (!currentFile) return;
+    currentFile.arrayBuffer().then(function(buf){
+      try {
+        var res = convertBytes(new Uint8Array(buf), document.getElementById('enc-target').value);
+        outEl.textContent = '判定：' + res.detected.label + '（' + currentFile.size + ' バイト）';
+        subEl.textContent = res.detected.reason;
+        prevEl.textContent = res.detected.text.slice(0, 500);
+      } catch (e) { msgEl.textContent = e.message; }
+    }).catch(function(){ msgEl.textContent = 'ファイルを読み込めませんでした。'; });
+  });
+  document.getElementById('btn-convert').addEventListener('click', function(){
+    var msgEl = document.getElementById('enc-msg');
+    var outEl = document.getElementById('enc-out');
+    var subEl = document.getElementById('enc-sub');
+    var prevEl = document.getElementById('enc-preview');
+    msgEl.textContent = '';
+    if (!currentFile) { msgEl.textContent = '先にファイルを選んでください。'; return; }
+    currentFile.arrayBuffer().then(function(buf){
+      try {
+        var target = document.getElementById('enc-target').value;
+        var res = convertBytes(new Uint8Array(buf), target);
+        var blob = new Blob([res.encoded.bytes], {type: 'text/csv'});
+        var a = document.createElement('a');
+        var dot = currentFile.name.lastIndexOf('.');
+        var base = dot > 0 ? currentFile.name.slice(0, dot) : currentFile.name;
+        var ext = dot > 0 ? currentFile.name.slice(dot) : '.csv';
+        a.href = URL.createObjectURL(blob);
+        a.download = base + res.encoded.suffix + ext;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+        outEl.textContent = '判定：' + res.detected.label + ' → 変換先：' + res.encoded.label + '（' + res.encoded.bytes.length + ' バイト）で保存しました。';
+        subEl.textContent = res.detected.reason + (res.encoded.replaced > 0 ? ' Shift_JISに無い文字 ' + res.encoded.replaced + ' 件を「?」に置き換えました。' : '');
+        prevEl.textContent = res.detected.text.slice(0, 500);
+      } catch (e) { msgEl.textContent = e.message; }
+    }).catch(function(){ msgEl.textContent = 'ファイルを読み込めませんでした。'; });
+  });
+}
+</script>
+</body>
+</html>
